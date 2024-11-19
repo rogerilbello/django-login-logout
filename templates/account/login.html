@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% block title %}Login{% endblock title %}
+{% block title %}Entra{% endblock title %}
 {% block content %}
 <div class="container my-5 w-50">
     <div class="card" style="padding:20px;">
-        <h1 class="display-6">Welcome Back!</h1>
+        <h1 class="display-6">Bentornato!</h1>
         <form action="{% url 'loginuser' %}" method="post">
             {% csrf_token %}
             <div class="mb-3">
-                <label for="name" class="lead form-label">Username</label>
+                <label for="name" class="lead form-label">Nome utente</label>
                 <input type="text" class="form-control" name="name" id="name">
             </div>
             <div class="mb-3">
@@ -15,11 +15,11 @@
                 <input type="password" class="form-control" name="password" id="password">
             </div>
             <div class="button mt-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Invia</button>
             </div>
         </form>
         <hr>
-        <p class="lead">Don't have an account yet? <a class="text-decoration-none" href="{% url 'signupuser' %}">Sign Up</a></p>
+        <p class="lead">Non hai ancora un account? <a class="text-decoration-none" href="{% url 'signupuser' %}">Registrati/Sign Up</a></p>
     </div>
 </div>
 

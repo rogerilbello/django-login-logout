@@ -23,10 +23,10 @@ def signupuser(request):
         return render(request, 'account/signup.html', {'form': CreateUserForm()})
     else:
         if len(request.POST['username']) > 15:
-            messages.error(request, " Username must be max 15 characters, Please try again")
+            messages.error(request, " Il nome utente deve contenere al massimo 15 caratteri. Riprova.")
             return render(request, 'account/signup.html', {'form': CreateUserForm()})
         if not request.POST['username'].isalnum():
-            messages.error(request, "Username should only contain letters and numbers, Please try again")
+            messages.error(request, "Il nome utente deve contenere solo lettere e numeri. Riprova.")
             return render(request, 'account/signup.html', {'form': CreateUserForm()})
         if request.POST['password1'] == request.POST['password2']:
             try:
@@ -37,10 +37,10 @@ def signupuser(request):
                 login(request, user)
                 return redirect('/')
             except IntegrityError:
-                messages.error(request, "Username already taken, Please try something else!")
+                messages.error(request, "Nome utente già utilizzato!")
                 return render(request, 'account/signup.html', {'form': CreateUserForm()})
         else:
-            messages.error(request, "Passwords did not match, Please try something else!")
+            messages.error(request, "Le password non corrispondono!")
             return render(request, 'account/signup.html', {'form': CreateUserForm()})
 
 
@@ -57,10 +57,10 @@ def loginuser(request):
 
         if user is not None:
             login(request, user)
-            messages.success(request, " Successfully logged in")
+            messages.success(request, " Accesso effetuato con successo")
             return redirect('/')
         else:
-            messages.error(request, " Invalid Credentials, Please try again")
+            messages.error(request, " Credenziali non valide, prego riprovare")
             return render(request, 'account/home.html')
 
 
@@ -68,7 +68,7 @@ def loginuser(request):
 @login_required
 def handlelogout(request):
     logout(request)
-    messages.success(request, " Successfully logged out")
+    messages.success(request, " Disconnessione avvenuta con successo")
     return redirect('/')
 
 
@@ -81,7 +81,7 @@ class ChangePassword(LoginRequiredMixin, TemplateView):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, user=request.user)
-            messages.success(request, "Changed Password successfully")
+            messages.success(request, " Password modificata con successo")
             return redirect('/')
         else:
             for err in form.errors.values():

@@ -33,18 +33,18 @@ border-top: 1.5px solid #000000;
         <div class="mx-5 col">
              <h4 class="mt-3">{{user_obj.username}}
                 {% if request.user == user_obj %}
-                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#editModal">Edit
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#editModal">Scrivi
                 </button>
                 {% endif %}
             </h4>
             <h6 class="display-6 ">{{user_obj.first_name}} {{user_obj.last_name}}</h6>
             <p>{{bio}}</p>
-            <p class="lead">Date Joined: {{user_obj.date_joined}}</p>
+            <p class="lead">Data di iscrizione: {{user_obj.date_joined}}</p>
         </div>
     </div>
 </div>
 <hr>
-<div class="text-center">        <a class="btn btn-info" role="button" href="{% url 'home' %}">Back  Home</a><br>
+<div class="text-center">        <a class="btn btn-info" role="button" href="{% url 'home' %}">Torna pagina iniziale</a><br>
 </div>
 
 {% endblock %}
@@ -57,7 +57,7 @@ border-top: 1.5px solid #000000;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Edit Profile</h5>
+                <h5 class="modal-title" id="editModalLabel">Descrivi il tuo profilo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -65,17 +65,17 @@ border-top: 1.5px solid #000000;
             <div class="modal-body">
                 <form action="/userprofile/saveProfile" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <label for="image">Profile Pic:</label>
+                    <label for="image">Immagine di profilo:</label>
                     <input type="file" name="image" id="image">
                     <br><br>
-                    <label for="captext">Bio : </label>
+                    <label for="captext">Biografia: </label>
                     <br>
                     <textarea name="captions" id="captions" cols="50" rows="5" placeholder="Your Bio goes here"
                               class="ml-4"></textarea>
                     <br>
                     <hr size="30">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                    <button type="submit" class="btn btn-primary">Salva modifiche</button>
                 </form>
             </div>
 
